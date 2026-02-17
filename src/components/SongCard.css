@@ -1,52 +1,77 @@
 @keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateX(-40px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+  from { opacity: 0; transform: translateX(-40px) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
 }
 
-@keyframes elementIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes questionPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
-.song-card {
+/* ── Wrapper ── */
+.song-card-wrapper {
   width: 100%;
   max-width: 420px;
   opacity: 0;
   animation: cardIn 0.5s ease forwards;
 }
 
-.card-element {
-  opacity: 0;
-  animation: elementIn 0.4s ease forwards;
-}
-
-.song-card-inner {
-  background: #27272a;
-  border: 1px solid #3f3f46;
+/* ── Both faces ── */
+.card-face {
   border-radius: 20px;
-  padding: 1.25rem;
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #3f3f46;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px -5px;
 }
 
-.song-card-inner:hover {
+/* ── Front: mystery ── */
+.card-mystery {
+  background: linear-gradient(145deg, #27272a, #1e1e21);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-mystery:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 20px 36px -10px;
+  border-color: #52525b;
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
+.card-mystery:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+.card-question {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #52525b;
+  user-select: none;
+  animation: questionPulse 2s ease-in-out infinite;
+}
+
+.card-mystery:hover .card-question {
+  animation: none;
+  color: #a1a1aa;
+}
+
+/* ── Back: content ── */
+.card-content {
+  background: linear-gradient(145deg, #27272a, #1e1e21);
+  padding: 1.25rem;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-content:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 20px 36px -10px;
+  border-color: #52525b;
+  transform: translateY(-4px);
+}
+
+/* ── Song info ── */
 .song-info {
   padding: 0.75rem 0.25rem 0;
 }
@@ -57,22 +82,22 @@
   color: #fafafa;
   margin: 0 0 0.2rem;
   letter-spacing: -0.01em;
+  transition: color 0.2s ease;
 }
+
+.card-content:hover .song-title { color: #fff; }
 
 .song-artist {
   font-size: 1rem;
   color: #fc3c7a;
-  margin: 0 0 0.15rem;
-  font-weight: 500;
-}
-
-.song-album {
-  font-size: 0.85rem;
-  color: #a1a1aa;
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
+.card-content:hover .song-artist { color: #fd6a9e; }
+
+/* ── Links ── */
 .song-links {
   display: flex;
   gap: 0.6rem;
@@ -80,10 +105,10 @@
   flex-wrap: wrap;
   opacity: 0;
   transform: translateY(6px);
-  transition: all 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.song-card-inner:hover .song-links {
+.card-content:hover .song-links {
   opacity: 1;
   transform: translateY(0);
 }
@@ -105,46 +130,32 @@
   color: #fff;
 }
 
-.link-spotify {
-  background: rgba(29, 185, 84, 0.6);
+.link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.link-spotify:hover {
-  background: rgba(29, 185, 84, 0.8);
-}
+.link-btn:active { transform: scale(0.96); }
 
-.link-youtube {
-  background: rgba(255, 0, 51, 0.6);
-}
+.link-btn svg { transition: transform 0.2s ease; }
+.link-btn:hover svg { transform: scale(1.15); }
 
-.link-youtube:hover {
-  background: rgba(255, 0, 51, 0.8);
-}
+.link-spotify { background: rgba(29, 185, 84, 0.6); }
+.link-spotify:hover { background: rgba(29, 185, 84, 0.85); }
 
-.link-karaoke {
-  background: rgba(139, 92, 246, 0.6);
-}
+.link-youtube { background: rgba(255, 0, 51, 0.6); }
+.link-youtube:hover { background: rgba(255, 0, 51, 0.85); }
 
-.link-karaoke:hover {
-  background: rgba(139, 92, 246, 0.8);
-}
+.link-karaoke { background: rgba(139, 92, 246, 0.6); }
+.link-karaoke:hover { background: rgba(139, 92, 246, 0.85); }
+
+.card-content:hover .link-btn:nth-child(2) { transition-delay: 0.04s; }
+.card-content:hover .link-btn:nth-child(3) { transition-delay: 0.08s; }
 
 @media (max-width: 600px) {
-  .song-card {
-    max-width: 100%;
-  }
-
-  .song-card-inner {
-    padding: 1rem;
-    border-radius: 16px;
-  }
-
-  .song-title {
-    font-size: 1.2rem;
-  }
-
-  .link-btn {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-  }
+  .song-card-wrapper { max-width: 100%; }
+  .card-face { border-radius: 16px; }
+  .card-content { padding: 1rem; }
+  .song-title { font-size: 1.2rem; }
+  .link-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
 }
