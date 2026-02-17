@@ -1,0 +1,14 @@
+.app {
+  min-height: 100vh;
+  background: #f4f4f5;
+}
+
+.songs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 0 1.5rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}

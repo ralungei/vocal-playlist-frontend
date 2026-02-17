@@ -1,0 +1,150 @@
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes elementIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.song-card {
+  width: 100%;
+  max-width: 420px;
+  opacity: 0;
+  animation: cardIn 0.5s ease forwards;
+}
+
+.card-element {
+  opacity: 0;
+  animation: elementIn 0.4s ease forwards;
+}
+
+.song-card-inner {
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  border-radius: 20px;
+  padding: 1.25rem;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.song-card-inner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.song-info {
+  padding: 0.75rem 0.25rem 0;
+}
+
+.song-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.song-artist {
+  font-size: 1rem;
+  color: #fc3c7a;
+  margin: 0 0 0.15rem;
+  font-weight: 500;
+}
+
+.song-album {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  margin: 0;
+  font-weight: 400;
+}
+
+.song-links {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.25s ease;
+}
+
+.song-card-inner:hover .song-links {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  border: none;
+  color: #fff;
+}
+
+.link-spotify {
+  background: rgba(29, 185, 84, 0.6);
+}
+
+.link-spotify:hover {
+  background: rgba(29, 185, 84, 0.8);
+}
+
+.link-youtube {
+  background: rgba(255, 0, 51, 0.6);
+}
+
+.link-youtube:hover {
+  background: rgba(255, 0, 51, 0.8);
+}
+
+.link-karaoke {
+  background: rgba(139, 92, 246, 0.6);
+}
+
+.link-karaoke:hover {
+  background: rgba(139, 92, 246, 0.8);
+}
+
+@media (max-width: 600px) {
+  .song-card {
+    max-width: 100%;
+  }
+
+  .song-card-inner {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .song-title {
+    font-size: 1.2rem;
+  }
+
+  .link-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
